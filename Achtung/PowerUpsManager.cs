@@ -16,7 +16,7 @@ namespace Achtung
         private int screenWidth, screenHeight;
 
         private List<PowerUp> drawPowerUps, activePowerUps, remove;
-        private List<PowerUp> activePowerUps;
+
         private Texture2D powerUpsTexture;
         private bool activated;
 
