@@ -14,8 +14,8 @@ namespace Achtung
         private const float ANGLE_INCREASE = 0.05f;
         private const int PIXEL_MARGIN = 200;
         private const float DEFAULT_VELOCITY = 2.5f;
-        private const float DEFAULT_SCALE = 0.1f;
-        private const int NODES_COUNT = 8;
+        private const float DEFAULT_SCALE = 0.05f;
+        private int nodesCount;
         private const string LOST = "You Lost!!!";
 
         private bool collided = false;
@@ -31,7 +31,10 @@ namespace Achtung
         private Node head;
         public Node Head 
         {
-            get { return head; }
+            get
+            {
+                return head; 
+            }
             set { head = value; }
         }
 
@@ -44,9 +47,9 @@ namespace Achtung
             this.screenHeight = screenHeight;
 
             RandomHead();
-            //this.head = new Node(RandomPosition(screenWidth, screenHeight), 0.0f, head2D, DEFAULT_SCALE);
             this.velocity = DEFAULT_VELOCITY;
-            this.nodes = new List<Node>();            
+            this.nodes = new List<Node>();
+            this.nodesCount = (int)(1000 * DEFAULT_SCALE);
         }
 
         public void Move(Direction d)
@@ -92,6 +95,7 @@ namespace Achtung
         public void UpdateVelocity(float multiplier)
         {
             this.velocity = velocity * multiplier;
+            nodesCount = (int)(nodesCount / multiplier);
         }
 
         private bool HasCollided()
@@ -99,9 +103,9 @@ namespace Achtung
             if (head.IsOutOfBounds(screenWidth, screenHeight))
                 return true;
 
-            if (nodes.Count > NODES_COUNT - 1)
+            if (nodes.Count > nodesCount - 1)
             {
-                for (int i = nodes.Count - NODES_COUNT; i >= 0; i--)
+                for (int i = nodes.Count - nodesCount; i >= 0; i--)
                     if (nodes[i].Intersects(head))
                         return true;
             }

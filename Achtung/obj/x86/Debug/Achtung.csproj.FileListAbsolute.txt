@@ -1,11 +1,11 @@
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\bin\x86\Debug\Achtung.exe
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\bin\x86\Debug\Achtung.pdb
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.exe
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.pdb
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\bin\x86\Debug\Content\head.xnb
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\bin\x86\Debug\Content\node.xnb
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\bin\x86\Debug\Content\defaultFont.xnb
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\bin\x86\Debug\Content\powerUps.xnb
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\bin\x86\Debug\Content\slow.xnb
+C:\Documents and Settings\talmid\שולחן העבודה\Achtung\Achtung\Achtung\bin\x86\Debug\Content\defaultFont.xnb
+C:\Documents and Settings\talmid\שולחן העבודה\Achtung\Achtung\Achtung\bin\x86\Debug\Content\head.xnb
+C:\Documents and Settings\talmid\שולחן העבודה\Achtung\Achtung\Achtung\bin\x86\Debug\Content\node.xnb
+C:\Documents and Settings\talmid\שולחן העבודה\Achtung\Achtung\Achtung\bin\x86\Debug\Content\powerUps.xnb
+C:\Documents and Settings\talmid\שולחן העבודה\Achtung\Achtung\Achtung\bin\x86\Debug\Content\slow.xnb
+C:\Documents and Settings\talmid\שולחן העבודה\Achtung\Achtung\Achtung\bin\x86\Debug\Achtung.exe
+C:\Documents and Settings\talmid\שולחן העבודה\Achtung\Achtung\Achtung\bin\x86\Debug\Achtung.pdb
+C:\Documents and Settings\talmid\שולחן העבודה\Achtung\Achtung\Achtung\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\talmid\שולחן העבודה\Achtung\Achtung\Achtung\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\talmid\שולחן העבודה\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.exe
+C:\Documents and Settings\talmid\שולחן העבודה\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.pdb

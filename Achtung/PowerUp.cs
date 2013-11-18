@@ -24,7 +24,10 @@ namespace Achtung
         protected Vector2 position;
         public Vector2 Position
         {
-            get { return position; }
+            get 
+            { 
+                return position + (new Vector2(texture.Width, texture.Height) / 2);
+            }
             set { position = value; }
         }
 

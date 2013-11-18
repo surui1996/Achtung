@@ -1,1 +1,1 @@
-C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\AchtungContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\talmid\שולחן העבודה\Achtung\Achtung\AchtungContent\obj\x86\Debug\ResolveAssemblyReference.cache

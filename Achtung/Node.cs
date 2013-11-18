@@ -19,7 +19,10 @@ namespace Achtung
         private Vector2 position;
         public Vector2 Position
         {
-            get { return position; }
+            get
+            {
+                return position; //+new Vector2(texture.Width * (1 - scale), texture.Height * (1 - scale));                
+            }
             set { position = value; }
         }
 
@@ -62,6 +65,7 @@ namespace Achtung
         {
             Rectangle a = new Rectangle((int)position.X, (int)position.Y, (int)(texture.Width), (int)(texture.Height));
             Rectangle b = new Rectangle((int)powerup.Position.X, (int)powerup.Position.Y, (int)(powerup.Texture.Width), (int)(powerup.Texture.Height));
+                                 
 
             return a.Intersects(b);
         }
