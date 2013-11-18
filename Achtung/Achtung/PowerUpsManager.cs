@@ -10,7 +10,7 @@ namespace Achtung
     class PowerUpsManager
     {
         private const int MAX = 2;
-        private TimeSpan DEFAULT_TIME = new TimeSpan(0, 0, 5);
+        private TimeSpan DEFAULT_TIME = new TimeSpan(0, 0, 3);
         private const int PIXEL_MARGIN = 200;
 
         private int screenWidth, screenHeight;
@@ -44,6 +44,7 @@ namespace Achtung
             {
                 if (snake.Head.Intersects(p))
                 {
+                    snake.Head.Intersects(p);
                     //TODO: head iontersects without really touching it
                     p.Start(snake, gameTime.TotalGameTime);
                     activePowerUps.Add(p);
