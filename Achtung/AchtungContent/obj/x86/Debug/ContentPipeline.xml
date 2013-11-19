@@ -7,8 +7,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\bin\x86\Debug\Content\defaultFont.xnb</Output>
-      <Time>2013-11-18T18:40:35.90625+02:00</Time>
+      <Output>C:\Documents and Settings\משתמש\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\defaultFont.xnb</Output>
+      <Time>2013-11-19T19:12:50.21875+02:00</Time>
     </Item>
     <Item>
       <Source>head.PNG</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\bin\x86\Debug\Content\head.xnb</Output>
-      <Time>2013-11-18T18:40:35.90625+02:00</Time>
+      <Output>C:\Documents and Settings\משתמש\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\head.xnb</Output>
+      <Time>2013-11-19T19:12:50.21875+02:00</Time>
     </Item>
     <Item>
       <Source>node.PNG</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\bin\x86\Debug\Content\node.xnb</Output>
-      <Time>2013-11-18T18:40:35.90625+02:00</Time>
+      <Output>C:\Documents and Settings\משתמש\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\node.xnb</Output>
+      <Time>2013-11-19T19:12:50.21875+02:00</Time>
     </Item>
     <Item>
       <Source>powerUps.PNG</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\bin\x86\Debug\Content\powerUps.xnb</Output>
-      <Time>2013-11-18T18:40:35.9375+02:00</Time>
+      <Output>C:\Documents and Settings\משתמש\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\powerUps.xnb</Output>
+      <Time>2013-11-19T19:12:50.21875+02:00</Time>
     </Item>
     <Item>
       <Source>slow.PNG</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\bin\x86\Debug\Content\slow.xnb</Output>
-      <Time>2013-11-18T18:40:35.953125+02:00</Time>
+      <Output>C:\Documents and Settings\משתמש\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\slow.xnb</Output>
+      <Time>2013-11-19T19:12:50.21875+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -52,39 +52,39 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\AchtungContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\AchtungContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Documents and Settings\Administrator\My Documents\Visual Studio 2010\Projects\Achtung\Achtung\Achtung\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Documents and Settings\משתמש\My Documents\GitHub\Achtung\Achtung\AchtungContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Documents and Settings\משתמש\My Documents\GitHub\Achtung\Achtung\Achtung\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Documents and Settings\משתמש\My Documents\GitHub\Achtung\Achtung\AchtungContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Documents and Settings\משתמש\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+03:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-02-25T16:47:18.234375+02:00</Value>
+        <Value>2011-09-14T10:03:17.09375+03:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
