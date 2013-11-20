@@ -64,8 +64,10 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="slow.PNG">
-      <Name>slow</Name>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="slowfast.PNG">
+      <Name>slowfast</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

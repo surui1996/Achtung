@@ -12,11 +12,14 @@ namespace Achtung
         private const int MAX = 2;
         private TimeSpan DEFAULT_TIME = new TimeSpan(0, 0, 3);
         private const int PIXEL_MARGIN = 200;
+        private const int POWERUP_WIDTH = 38;
+        private const int POWERUP_HEIGHT = 40;
 
         private int screenWidth, screenHeight;
 
         private List<PowerUp> drawPowerUps, activePowerUps, remove;
 
+        private Dictionary<string, Rectangle> powerUpsDic;
         private Texture2D powerUpsTexture;
         
 
@@ -28,37 +31,45 @@ namespace Achtung
             drawPowerUps = new List<PowerUp>();
             activePowerUps = new List<PowerUp>();
             remove = new List<PowerUp>();
+            powerUpsDic = new Dictionary<string, Rectangle>();
+            powerUpsDic.Add("SlowYourself", new Rectangle(0, 0, POWERUP_WIDTH, POWERUP_HEIGHT));
+            powerUpsDic.Add("SpeedYourself", new Rectangle(POWERUP_WIDTH, 0, POWERUP_WIDTH, POWERUP_HEIGHT));
         }
 
         public void Update(Snake snake, GameTime gameTime)
         {
-            while (drawPowerUps.Count < MAX)
+            //Add new powerups to the field
+            while (drawPowerUps.Count < MAX) //TODO: appear at random times
             {
                 PowerUp p = AddRandomPowerUp();
-                while(snake.Head.Intersects((p)))
+                while (p == null) p = AddRandomPowerUp();
+                while (snake.Head.Intersects((p)))
+                {
                     p = AddRandomPowerUp();
+                    while (p == null) p = AddRandomPowerUp();
+                }                    
                 drawPowerUps.Add(p);
             }
 
+            //Start powerups effect on intersect event
+            //TODO: implemet it with events and not if's
             foreach (PowerUp p in drawPowerUps)
             {
                 if (snake.Head.Intersects(p))
                 {
                     snake.Head.Intersects(p);
-                    //TODO: head iontersects without really touching it
                     p.Start(snake, gameTime.TotalGameTime);
                     activePowerUps.Add(p);
                     remove.Add(p);                   
                 }
             }
 
-            foreach (PowerUp p in remove)
-            {
+            foreach (PowerUp p in remove) // remove powerUps from drawing
                 drawPowerUps.Remove(p);
-            }
             remove = new List<PowerUp>();
-            
-            foreach (PowerUp p in activePowerUps)
+
+            // calculate when the powerUp effect has to stop
+            foreach (PowerUp p in activePowerUps) 
             {
                 drawPowerUps.Remove(p);
                 if (gameTime.TotalGameTime.Subtract(p.StartTime) > DEFAULT_TIME)
@@ -67,18 +78,17 @@ namespace Achtung
                     remove.Add(p);
                 }                
             }
-            foreach (PowerUp p in remove)
-            {
+
+            foreach (PowerUp p in remove) // remove stopped powerUps
                 activePowerUps.Remove(p);
-            }
             remove = new List<PowerUp>();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (PowerUp p in drawPowerUps)
-                spriteBatch.Draw(p.Texture, p.Position, null, Color.CornflowerBlue, 0.0f,
-                    new Vector2(p.Texture.Width / 2, p.Texture.Height / 2), 1.0f, SpriteEffects.None, 0);
+                spriteBatch.Draw(p.Texture, p.Position, powerUpsDic[p.Name], Color.CornflowerBlue, 0.0f,
+                    new Vector2(0,0), 1.0f, SpriteEffects.None, 0);
         }
 
         public PowerUp AddRandomPowerUp()
@@ -86,9 +96,18 @@ namespace Achtung
             Vector2 pos = new Vector2();
             Random rnd = new Random();
             pos.X = rnd.Next(PIXEL_MARGIN, screenWidth - PIXEL_MARGIN);
-            pos.Y = rnd.Next(PIXEL_MARGIN, screenHeight - PIXEL_MARGIN);            
+            pos.Y = rnd.Next(PIXEL_MARGIN, screenHeight - PIXEL_MARGIN);
 
-            return new SlowYourself(pos, powerUpsTexture);
+            PowerUp power;
+            if((int)rnd.Next(2) == 0)
+                power = new SlowYourself(pos, powerUpsTexture);
+            else
+                power = new SpeedYourself(pos, powerUpsTexture);
+            foreach (PowerUp p in drawPowerUps)
+                if (power.Intersects(p))
+                    return null;
+
+            return power;
         }
     }
 }

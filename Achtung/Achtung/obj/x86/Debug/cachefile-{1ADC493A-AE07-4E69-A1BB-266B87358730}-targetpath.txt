@@ -2,4 +2,4 @@ Content\defaultFont.xnb
 Content\head.xnb
 Content\node.xnb
 Content\powerUps.xnb
-Content\slow.xnb
+Content\slowfast.xnb

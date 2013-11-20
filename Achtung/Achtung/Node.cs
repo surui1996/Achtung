@@ -67,9 +67,6 @@ namespace Achtung
             Rectangle a = new Rectangle((int)position.X, (int)position.Y, (int)(texture.Width * scale), (int)(texture.Height * scale));
             Rectangle b = new Rectangle((int)powerup.Position.X, (int)powerup.Position.Y, (int)(powerup.Texture.Width), (int)(powerup.Texture.Height));
 
-            //if ((b.Left < a.Right && b.Left > a.Left) && )
-            //    return true;
-            //if(
             return a.Intersects(b);
         }
 

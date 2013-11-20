@@ -21,7 +21,7 @@ namespace Achtung
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        Texture2D head, node, powerUps, slow;
+        Texture2D head, node, powerUps;
         Snake snake;
         PowerUpsManager manager;
         SpriteFont font;
@@ -58,11 +58,10 @@ namespace Achtung
             spriteBatch = new SpriteBatch(GraphicsDevice);
             head = Content.Load<Texture2D>("head");
             node = Content.Load<Texture2D>("node");
-            powerUps = Content.Load<Texture2D>("powerUps");
-            slow = Content.Load<Texture2D>("slow");
+            powerUps = Content.Load<Texture2D>("slowfast"); // TODO: add after all the powerUp.PNG
             font = Content.Load<SpriteFont>("defaultFont");
             snake = new Snake(head, node, font, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-            manager = new PowerUpsManager(slow, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            manager = new PowerUpsManager(powerUps, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
         }
 
         /// <summary>

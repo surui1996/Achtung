@@ -115,6 +115,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="SlowYourself.cs" />
     <Compile Include="Snake.cs" />
+    <Compile Include="SpeedYourself.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

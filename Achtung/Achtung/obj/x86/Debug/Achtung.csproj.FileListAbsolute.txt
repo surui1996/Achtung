@@ -31,3 +31,14 @@ C:\Documents and Settings\משתמש\My Documents\GitHub\Achtung\Achtung\Achtung
 C:\Documents and Settings\משתמש\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Achtung.exe
 C:\Documents and Settings\משתמש\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Achtung.pdb
 C:\Documents and Settings\משתמש\My Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.pdb
+C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\defaultFont.xnb
+C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\head.xnb
+C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\node.xnb
+C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\powerUps.xnb
+C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Achtung.exe
+C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Achtung.pdb
+C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.exe
+C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.pdb
+C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\slowfast.xnb

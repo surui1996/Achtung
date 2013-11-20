@@ -21,6 +21,14 @@ namespace Achtung
         public abstract void Start(Snake taker, TimeSpan gameTime);
         public abstract void Stop();
 
+        public bool Intersects(PowerUp other)
+        {
+            Rectangle a = new Rectangle((int)position.X, (int)position.Y, (int)(texture.Width), (int)(texture.Height));
+            Rectangle b = new Rectangle((int)other.Position.X, (int)other.Position.Y, (int)(other.Texture.Width), (int)(other.Texture.Height));
+
+            return a.Intersects(b);
+        }
+
         protected Vector2 position;
         public Vector2 Position
         {
@@ -46,5 +54,7 @@ namespace Achtung
         }
 
         protected Snake taker;
+
+        public string Name { get; set; }
     }
 }

@@ -7,25 +7,26 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Achtung
 {
-    class SlowYourself : PowerUp
+    class SpeedYourself : PowerUp
     {
-        private const float SLOW = 0.5f;
+        private const float SPEED = 1.3f;
 
-        public SlowYourself(Vector2 position, Texture2D texture) : base(position, texture)
+        public SpeedYourself(Vector2 position, Texture2D texture)
+            : base(position, texture)
         {
-            Name = "SlowYourself";
+            Name = "SpeedYourself";
         }
 
         public override void Start(Snake taker, TimeSpan gameTime)
         {
             this.startTime = gameTime;
-            taker.UpdateVelocity(SLOW);
+            taker.UpdateVelocity(SPEED);
             this.taker = taker;
         }
 
         public override void Stop()
         {
-            taker.UpdateVelocity(1 / SLOW);
+            taker.UpdateVelocity(1 / SPEED);
         }
     }
 }
