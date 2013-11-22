@@ -7,14 +7,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Achtung
 {
-    class SpeedYourself : PowerUp
+    class ThinYourself : PowerUp
     {
-        private const float SPEED = 1.3f;
+        private const float THIN = 0.5f;
 
-        public SpeedYourself(Vector2 position)
+        public ThinYourself(Vector2 position)
             : base(position)
         {
-            Name = "SpeedYourself";
+            Name = "ThinYourself";
         }
 
         public override void Start(Snake taker, TimeSpan gameTime)
@@ -22,7 +22,7 @@ namespace Achtung
             if (!started)
             {
                 this.startTime = gameTime;
-                taker.UpdateVelocity(SPEED);
+                taker.UpdateScale(THIN);
                 this.taker = taker;
                 started = true;
             }
@@ -30,7 +30,7 @@ namespace Achtung
 
         public override void Stop()
         {
-            taker.UpdateVelocity(1 / SPEED);
+            taker.UpdateScale(1 / THIN);
         }
     }
 }

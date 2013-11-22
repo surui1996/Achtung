@@ -11,11 +11,16 @@ namespace Achtung
 
     abstract class PowerUp
     {
-        
-        protected PowerUp(Vector2 position, Texture2D texture)
+        //TODO
+        public TimeSpan EffectTime { get; set; }
+        protected bool started;
+        protected Snake taker;
+
+        protected PowerUp(Vector2 position)
         {
             this.position = position;
-            this.texture = texture;
+            this.EffectTime = new TimeSpan(0, 0, 3);
+            started = false;
         }
 
         public abstract void Start(Snake taker, TimeSpan gameTime);
@@ -23,8 +28,8 @@ namespace Achtung
 
         public bool Intersects(PowerUp other)
         {
-            Rectangle a = new Rectangle((int)position.X, (int)position.Y, (int)(texture.Width), (int)(texture.Height));
-            Rectangle b = new Rectangle((int)other.Position.X, (int)other.Position.Y, (int)(other.Texture.Width), (int)(other.Texture.Height));
+            Rectangle a = new Rectangle((int)position.X, (int)position.Y, PowerUpsManager.POWERUP_WIDTH, PowerUpsManager.POWERUP_HEIGHT);
+            Rectangle b = new Rectangle((int)other.Position.X, (int)other.Position.Y, PowerUpsManager.POWERUP_WIDTH, PowerUpsManager.POWERUP_HEIGHT);
 
             return a.Intersects(b);
         }
@@ -32,10 +37,7 @@ namespace Achtung
         protected Vector2 position;
         public Vector2 Position
         {
-            get 
-            {
-                return position; //+(new Vector2(texture.Width, texture.Height) / 2);
-            }
+            get { return position; }
             set { position = value; }
         }
 
@@ -46,14 +48,7 @@ namespace Achtung
             set { startTime = value; }
         }
 
-        protected Texture2D texture;
-        public Texture2D Texture
-        {
-            get { return texture; }
-            set { texture = value; }
-        }
-
-        protected Snake taker;
+        protected Vector2 powerUpRectangle;
 
         public string Name { get; set; }
     }

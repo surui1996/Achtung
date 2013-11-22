@@ -58,7 +58,7 @@ namespace Achtung
             spriteBatch = new SpriteBatch(GraphicsDevice);
             head = Content.Load<Texture2D>("head");
             node = Content.Load<Texture2D>("node");
-            powerUps = Content.Load<Texture2D>("slowfast"); // TODO: add after all the powerUp.PNG
+            powerUps = Content.Load<Texture2D>("powerUps");
             font = Content.Load<SpriteFont>("defaultFont");
             snake = new Snake(head, node, font, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             manager = new PowerUpsManager(powerUps, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);

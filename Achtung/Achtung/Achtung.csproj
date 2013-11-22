@@ -107,6 +107,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AntiWallYourself.cs" />
+    <Compile Include="FreeYourself.cs" />
+    <Compile Include="MathHelper.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="PowerUp.cs" />
     <Compile Include="PowerUpsManager.cs" />
@@ -116,6 +119,8 @@
     <Compile Include="SlowYourself.cs" />
     <Compile Include="Snake.cs" />
     <Compile Include="SpeedYourself.cs" />
+    <Compile Include="SquareYourself.cs" />
+    <Compile Include="ThinYourself.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

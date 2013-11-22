@@ -16,13 +16,10 @@ namespace Achtung
             this.scale = scale;
         }
 
-        private Vector2 position;
+        public Vector2 position;
         public Vector2 Position
         {
-            get
-            {
-                return position;
-            }
+            get { return position; }
             set { position = value; }
         }
 
@@ -49,8 +46,13 @@ namespace Achtung
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.CornflowerBlue, angle,
+            spriteBatch.Draw(texture, position, null, Color.CornflowerBlue, MathHelper.ToRadians(angle),
                     new Vector2(texture.Width / 2, texture.Height / 2), scale, SpriteEffects.None, 0);
+        }
+        public void Draw(SpriteBatch spriteBatch, Color color)
+        {
+            spriteBatch.Draw(texture, position, null, color, MathHelper.ToRadians(angle),
+                    new Vector2(texture.Width / 2, texture.Height / 2), scale * 2, SpriteEffects.None, 0);
         }
 
         public bool Intersects(Node other)
@@ -65,7 +67,7 @@ namespace Achtung
         {
             
             Rectangle a = new Rectangle((int)position.X, (int)position.Y, (int)(texture.Width * scale), (int)(texture.Height * scale));
-            Rectangle b = new Rectangle((int)powerup.Position.X, (int)powerup.Position.Y, (int)(powerup.Texture.Width), (int)(powerup.Texture.Height));
+            Rectangle b = new Rectangle((int)powerup.Position.X, (int)powerup.Position.Y, PowerUpsManager.POWERUP_WIDTH, PowerUpsManager.POWERUP_HEIGHT);
 
             return a.Intersects(b);
         }
