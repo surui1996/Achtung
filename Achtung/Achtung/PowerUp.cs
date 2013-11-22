@@ -48,8 +48,6 @@ namespace Achtung
             set { startTime = value; }
         }
 
-        protected Vector2 powerUpRectangle;
-
         public string Name { get; set; }
     }
 }

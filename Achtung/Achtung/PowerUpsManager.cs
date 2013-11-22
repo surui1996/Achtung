@@ -9,14 +9,14 @@ namespace Achtung
 {
     class PowerUpsManager
     {
-        public static int POWERUP_WIDTH = 38;
-        public static int POWERUP_HEIGHT = 40;
+        public static int POWERUP_WIDTH = 42;
+        public static int POWERUP_HEIGHT = 41;
 
         private const int MAX = 5;
         private TimeSpan DEFAULT_TIME = new TimeSpan(0, 0, 3);
         private const int PIXEL_MARGIN = 200;
 
-        private const float X = 47.5f;
+        private const float X = 48.0f;
 
         private int screenWidth, screenHeight;
 
@@ -37,7 +37,6 @@ namespace Achtung
             remove = new List<PowerUp>();
             powerUpsDic = new Dictionary<string, Rectangle>();
 
-            //TODO: fix the rectangles to fit exactly each powerup circle
             powerUpsDic.Add("SlowYourself", new Rectangle(0, 0, POWERUP_WIDTH, POWERUP_HEIGHT));
             powerUpsDic.Add("SpeedYourself", new Rectangle((int)X, 0, POWERUP_WIDTH, POWERUP_HEIGHT));
             powerUpsDic.Add("ThinYourself", new Rectangle((int)(X * 2), 0, POWERUP_WIDTH, POWERUP_HEIGHT));
@@ -47,11 +46,14 @@ namespace Achtung
             rnd = new Random();
         }
 
-        public void Update(Snake snake, GameTime gameTime)
+        public void Update(List<Snake> snakes, GameTime gameTime)
         {
-            if (snake.Collided) // end of the game
-                return;
+            foreach (Snake s in snakes)
+                UpdateSnake(s, gameTime);            
+        }
 
+        private void UpdateSnake(Snake snake, GameTime gameTime)
+        {
             //Add new powerups to the field, randomly
             while (drawPowerUps.Count < MAX && ((int)rnd.Next(100) == 0))
             {
@@ -62,7 +64,7 @@ namespace Achtung
                 {
                     p = AddRandomPowerUp();
                     while (p == null) p = AddRandomPowerUp();
-                }                    
+                }
                 drawPowerUps.Add(p);
             }
 
@@ -78,7 +80,7 @@ namespace Achtung
                     activePowerUps.Add(p);
                     if (remove == null)
                         remove = new List<PowerUp>();
-                    remove.Add(p);                   
+                    remove.Add(p);
                 }
             }
 
@@ -91,7 +93,7 @@ namespace Achtung
             }
 
             // calculate when the powerUp effect has to stop
-            foreach (PowerUp p in activePowerUps) 
+            foreach (PowerUp p in activePowerUps)
             {
                 if (gameTime.TotalGameTime.Subtract(p.StartTime) > p.EffectTime)
                 {
@@ -99,7 +101,7 @@ namespace Achtung
                     if (remove == null)
                         remove = new List<PowerUp>();
                     remove.Add(p);
-                }                
+                }
             }
 
             if (remove != null)
@@ -108,8 +110,6 @@ namespace Achtung
                     activePowerUps.Remove(p);
                 remove = null;
             }
-
-            
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -119,7 +119,21 @@ namespace Achtung
                     new Vector2(0,0), 1.0f, SpriteEffects.None, 0);
         }
 
-        public PowerUp AddRandomPowerUp()
+        public void Lost()
+        {
+            foreach (PowerUp p in activePowerUps)
+                p.Stop();
+
+            activePowerUps = new List<PowerUp>();
+            remove = null;
+        }
+
+        public void Reset()
+        {
+            drawPowerUps = new List<PowerUp>();
+        }
+
+        private PowerUp AddRandomPowerUp()
         {
             Vector2 pos = new Vector2(rnd.Next(PIXEL_MARGIN, screenWidth - PIXEL_MARGIN),
                 rnd.Next(PIXEL_MARGIN, screenHeight - PIXEL_MARGIN));

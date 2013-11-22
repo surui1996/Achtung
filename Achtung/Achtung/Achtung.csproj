@@ -118,6 +118,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="SlowYourself.cs" />
     <Compile Include="Snake.cs" />
+    <Compile Include="SnakesManager.cs" />
     <Compile Include="SpeedYourself.cs" />
     <Compile Include="SquareYourself.cs" />
     <Compile Include="ThinYourself.cs" />

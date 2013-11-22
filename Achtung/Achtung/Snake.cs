@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Achtung
 {
@@ -11,15 +12,22 @@ namespace Achtung
 
     class Snake
     {
+        private const int HEAD_RADIUS = 69;
+        private const int STARTING_LENGTH = 5;
         private const float ANGLE_INCREASE = 3.5f;
         private const int PIXEL_MARGIN = 200;
-        private const float DEFAULT_VELOCITY = 2.5f;
+        private const float DEFAULT_VELOCITY = 2.0f;
         private const float DEFAULT_SCALE = 0.05f;
+        private const float MIN_DISTANCE = 125.0f;
 
         public float Scale { get; set; }
+        public string SnakeColor { get; set; }
+        private Rectangle nodeRectangle;
+        private Dictionary<string, Rectangle> headDic;
+        private Dictionary<Direction, Keys> keysDic;
 
         private int nodesCount;
-        private const string LOST = "You Lost!!!";
+        
 
         private bool collided = false;
         public bool Collided
@@ -35,6 +43,7 @@ namespace Achtung
         private bool changedDirection;
 
         private List<Node> nodes;
+        public List<Node> Nodes { get { return nodes;} }
         Texture2D head2D, node2D;
         SpriteFont font;
         private Random rnd;
@@ -53,10 +62,11 @@ namespace Achtung
             set { head = value; }
         }
 
-        public Snake(Texture2D head, Texture2D node, SpriteFont font, int screenWidth, int screenHeight)
+        public Snake(Texture2D head, Texture2D node, string color, SpriteFont font, Keys[] keys, SnakesManager sm, int screenWidth, int screenHeight)
         {
             this.head2D = head;
             this.node2D = node;
+            this.SnakeColor = color;
             this.font = font;
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
@@ -67,30 +77,42 @@ namespace Achtung
             this.changedDirection = false;
             this.rnd = new Random();
 
-            RandomHead();
+            headDic = new Dictionary<string, Rectangle>();
+            headDic.Add("Red", new Rectangle(0, 0, HEAD_RADIUS, HEAD_RADIUS));
+            headDic.Add("Green", new Rectangle(HEAD_RADIUS, 0, HEAD_RADIUS, HEAD_RADIUS));
+            headDic.Add("Blue", new Rectangle(HEAD_RADIUS * 2, 0, HEAD_RADIUS, HEAD_RADIUS));
+            this.nodeRectangle = headDic[color];
+
+            keysDic = new Dictionary<Direction, Keys>();
+            keysDic.Add(Direction.Left, keys[0]);
+            keysDic.Add(Direction.Right, keys[1]);
+
             this.velocity = DEFAULT_VELOCITY;
             this.nodes = new List<Node>();
-            this.nodesCount = (int)(1000 * DEFAULT_SCALE);
+            this.nodesCount = (int)(1000 * DEFAULT_SCALE * (1 / DEFAULT_VELOCITY));
+            //RandomHead(sm);            
         }
 
-        public void Move(Direction d)
+        public void Move(KeyboardState state)
         {
-            
             if(collided)
                 return;
             if (Square)
             {
                 
-                nodes.Add(new Node(head.Position, head.Angle, node2D, Scale));
-                switch (d)
+                nodes.Add(new Node(head.Position, head.Angle, node2D, nodeRectangle, Scale));
+                if(state.IsKeyDown(keysDic[Direction.Right]))
                 {
-                    case Direction.Right: if (!changedDirection) head.Angle += 90.0f; changedDirection = true;
-                        break;
-                    case Direction.Left: if (!changedDirection) head.Angle -= 90.0f; changedDirection = true;
-                        break;
-                    case Direction.None: changedDirection = false;
-                        break;
+                    if (!changedDirection) head.Angle += 90.0f;
+                    changedDirection = true;
                 }
+                else if(state.IsKeyDown(keysDic[Direction.Left]))
+                {
+                    if (!changedDirection) head.Angle -= 90.0f;
+                    changedDirection = true;
+                }
+                else
+                    changedDirection = false;
 
                 head.Position += new Vector2((float)Math.Cos(MathHelper.ToRadians(head.Angle)),
                     (float)Math.Sin(MathHelper.ToRadians(head.Angle))) * velocity;
@@ -100,16 +122,14 @@ namespace Achtung
             if (hole < -5)
               RandomHole();
             if(hole < 0 && !FreeNodes)
-               nodes.Add(new Node(head.Position, head.Angle, node2D, Scale));
+               nodes.Add(new Node(head.Position, head.Angle, node2D, nodeRectangle, Scale));
             hole--;
-                
-            switch (d)
-            {
-                case Direction.Right: head.Angle += ANGLE_INCREASE;
-                    break;
-                case Direction.Left: head.Angle -= ANGLE_INCREASE;
-                    break;
-            }
+
+            if (state.IsKeyDown(keysDic[Direction.Right]))
+                head.Angle += ANGLE_INCREASE;
+            else if (state.IsKeyDown(keysDic[Direction.Left]))
+                head.Angle -= ANGLE_INCREASE;
+            
             head.Position += new Vector2((float)Math.Cos(MathHelper.ToRadians(head.Angle)),
                                 (float)Math.Sin(MathHelper.ToRadians(head.Angle))) * velocity;
         }
@@ -120,7 +140,7 @@ namespace Achtung
             if (!collided)
                 collided = HasCollided();
             if (NoWalls && (noWallsCounter % 25 >= 0) && (noWallsCounter % 25 < 15)) 
-                head.Draw(spriteBatch, Color.Black);
+                head.Draw(spriteBatch, 2.0f);
             else if (!NoWalls)
                 head.Draw(spriteBatch);
             for (int i = 0; i < nodes.Count; i++)
@@ -128,11 +148,23 @@ namespace Achtung
                 nodes[i].Draw(spriteBatch);
             }
 
-            if (collided)
-                spriteBatch.DrawString(font, LOST,
-                    new Vector2((screenWidth - font.MeasureString(LOST).X) / 2,
-                        (screenHeight - font.MeasureString(LOST).Y) / 2), Color.Black);
             noWallsCounter++;
+        }
+
+        public void NewGame(SnakesManager sm)
+        {           
+            this.Scale = DEFAULT_SCALE;
+            this.Square = false;
+            this.NoWalls = false;
+            this.FreeNodes = false;
+            this.changedDirection = false;
+            this.collided = false;
+            this.velocity = DEFAULT_VELOCITY;
+            this.nodes = new List<Node>();
+            this.nodesCount = (int)(100 * DEFAULT_SCALE * DEFAULT_VELOCITY);
+
+
+            RandomHead(sm);            
         }
 
         public void UpdateVelocity(float multiplier)
@@ -147,6 +179,7 @@ namespace Achtung
             head.Scale = newScale;
             Scale = newScale;
         }
+
 
         private bool HasCollided()
         {
@@ -165,7 +198,8 @@ namespace Achtung
                 else
                     return true;
             }
-                
+
+            if (FreeNodes) return false;
 
             if (nodes.Count > nodesCount - 1)
             {
@@ -186,14 +220,42 @@ namespace Achtung
                 hole = -6;
         }
 
-        private void RandomHead()
+        public void RandomHead(SnakesManager sm)
         {
             Vector2 pos = new Vector2();
-            pos.X = rnd.Next(PIXEL_MARGIN, screenWidth - PIXEL_MARGIN);
-            pos.Y = rnd.Next(PIXEL_MARGIN, screenHeight - PIXEL_MARGIN);
+            bool intersects = true;
+            while (intersects)
+            {
+                intersects = false;
+                pos.X = rnd.Next(PIXEL_MARGIN, screenWidth - PIXEL_MARGIN);
+                pos.Y = rnd.Next(PIXEL_MARGIN, screenHeight - PIXEL_MARGIN);
+                foreach (Snake s in sm.Snakes)
+                    if(s.Head != null)
+                        if (Distance(pos, s.Head.Position) < MIN_DISTANCE)
+                        {
+                            intersects = true;
+                            break;
+                        }
+            }
 
-            this.head = new Node(pos, 0.0f, head2D, Scale);//rnd.Next(0, 360), head2D, Scale);
+            this.head = new Node(pos, rnd.Next(0, 360), head2D, nodeRectangle, Scale);
+            for (int i = 0; i < STARTING_LENGTH; i++)
+            {
+                nodes.Add(new Node(head.Position, head.Angle, node2D, nodeRectangle, Scale));
+                head.Position += new Vector2((float)Math.Cos(MathHelper.ToRadians(head.Angle)),
+                                (float)Math.Sin(MathHelper.ToRadians(head.Angle))) * velocity;
+            }
+            
+
         }
+
+        private float Distance(Vector2 v1, Vector2 v2)
+        {
+            float x = (float)Math.Sqrt((double)(Math.Pow((double)(v1.X - v2.X), 2.0) + Math.Pow((double)(v1.Y - v2.Y), 2.0)));
+            return x;
+        }
+
+        
 
     }
 }

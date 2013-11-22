@@ -8,13 +8,16 @@ namespace Achtung
 {
     class Node
     {
-        public Node(Vector2 position, float angle, Texture2D texture, float scale)
+        public Node(Vector2 position, float angle, Texture2D texture, Rectangle sourceRec, float scale)
         {
             this.position = position;
             this.angle = angle;
             this.texture = texture;
             this.scale = scale;
+            this.SourceRectangle = sourceRec;
         }
+
+        public Rectangle SourceRectangle { get; set; }
 
         public Vector2 position;
         public Vector2 Position
@@ -46,13 +49,17 @@ namespace Achtung
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture, position, null, Color.CornflowerBlue, MathHelper.ToRadians(angle),
-                    new Vector2(texture.Width / 2, texture.Height / 2), scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, position, SourceRectangle, Color.White,
+                MathHelper.ToRadians(angle),
+                new Vector2(texture.Width / 2, texture.Height / 2),
+                scale, SpriteEffects.None, 0);
         }
-        public void Draw(SpriteBatch spriteBatch, Color color)
+        public void Draw(SpriteBatch spriteBatch, float scaleMultiplier)
         {
-            spriteBatch.Draw(texture, position, null, color, MathHelper.ToRadians(angle),
-                    new Vector2(texture.Width / 2, texture.Height / 2), scale * 2, SpriteEffects.None, 0);
+            spriteBatch.Draw(texture, position, SourceRectangle, Color.White,
+                MathHelper.ToRadians(angle),
+                new Vector2(texture.Width / 2, texture.Height / 2),
+                scale * scaleMultiplier, SpriteEffects.None, 0);
         }
 
         public bool Intersects(Node other)
