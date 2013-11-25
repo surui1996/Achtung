@@ -43,7 +43,11 @@ namespace Achtung
             }
         }
 
-        
+        public void ScoreWinner()
+        {
+            foreach (Snake s in Snakes)
+                if (!s.Collided) s.Score += 1;
+        }
 
         public bool IsGameOver()
         {

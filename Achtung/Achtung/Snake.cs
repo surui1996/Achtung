@@ -20,8 +20,10 @@ namespace Achtung
         private const float DEFAULT_SCALE = 0.05f;
         private const float MIN_DISTANCE = 125.0f;
 
+        public int Score { get; set; }
         public float Scale { get; set; }
-        public string SnakeColor { get; set; }
+        public Color SnakeColor { get; set; }
+        public string Name { get; set; }
         private Rectangle nodeRectangle;
         private Dictionary<string, Rectangle> headDic;
         private Dictionary<Direction, Keys> keysDic;
@@ -62,15 +64,17 @@ namespace Achtung
             set { head = value; }
         }
 
-        public Snake(Texture2D head, Texture2D node, string color, SpriteFont font, Keys[] keys, SnakesManager sm, int screenWidth, int screenHeight)
+        public Snake(Texture2D head, Texture2D node, string name, Color color, SpriteFont font, Keys[] keys, SnakesManager sm, int screenWidth, int screenHeight)
         {
             this.head2D = head;
             this.node2D = node;
+            this.Name = name;
             this.SnakeColor = color;
             this.font = font;
             this.screenWidth = screenWidth;
             this.screenHeight = screenHeight;
             this.Scale = DEFAULT_SCALE;
+            this.Score = 0;
             this.Square = false;
             this.NoWalls = false;
             this.FreeNodes = false;
@@ -78,10 +82,10 @@ namespace Achtung
             this.rnd = new Random();
 
             headDic = new Dictionary<string, Rectangle>();
-            headDic.Add("Red", new Rectangle(0, 0, HEAD_RADIUS, HEAD_RADIUS));
-            headDic.Add("Green", new Rectangle(HEAD_RADIUS, 0, HEAD_RADIUS, HEAD_RADIUS));
-            headDic.Add("Blue", new Rectangle(HEAD_RADIUS * 2, 0, HEAD_RADIUS, HEAD_RADIUS));
-            this.nodeRectangle = headDic[color];
+            headDic.Add("Fred", new Rectangle(0, 0, HEAD_RADIUS, HEAD_RADIUS));
+            headDic.Add("Greenlee", new Rectangle(HEAD_RADIUS, 0, HEAD_RADIUS, HEAD_RADIUS));
+            headDic.Add("Bluebell", new Rectangle(HEAD_RADIUS * 2, 0, HEAD_RADIUS, HEAD_RADIUS));
+            this.nodeRectangle = headDic[name];
 
             keysDic = new Dictionary<Direction, Keys>();
             keysDic.Add(Direction.Left, keys[0]);
@@ -89,8 +93,7 @@ namespace Achtung
 
             this.velocity = DEFAULT_VELOCITY;
             this.nodes = new List<Node>();
-            this.nodesCount = (int)(1000 * DEFAULT_SCALE * (1 / DEFAULT_VELOCITY));
-            //RandomHead(sm);            
+            this.nodesCount = (int)(1000 * DEFAULT_SCALE * (1 / DEFAULT_VELOCITY));           
         }
 
         public void Move(KeyboardState state)
@@ -186,7 +189,6 @@ namespace Achtung
 
             if (head.IsOutOfBounds(screenWidth, screenHeight))
             {
-                //Vector2 p = head.Position;
                 if (NoWalls)
                 {
                     if (head.Position.X < 0) head.position.X = (float)screenWidth;

@@ -25,6 +25,7 @@ namespace Achtung
         List<Snake> players;
         SnakesManager snakesManager;
         PowerUpsManager powerUpsManager;
+        ScoreManager scoreManager;
 
         SpriteFont font;
 
@@ -32,12 +33,15 @@ namespace Achtung
         event MoveDel MoveSnakes;
 
         private const string LOST = "Game Over!!!";
+        private const int FIELD_WIDTH = 750;
+        private const int HEIGHT = 600;
+        private const int WIDTH = 1000;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 1000;
-            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = WIDTH;
+            graphics.PreferredBackBufferHeight = HEIGHT;
             Content.RootDirectory = "Content";
         }
 
@@ -67,19 +71,21 @@ namespace Achtung
             powerUps = Content.Load<Texture2D>("PowerUps");
             font = Content.Load<SpriteFont>("defaultFont");
 
-            snakesManager = SnakesManager.GetInstance();            
-            powerUpsManager = new PowerUpsManager(powerUps, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            snakesManager = SnakesManager.GetInstance();
+            powerUpsManager = new PowerUpsManager(powerUps, FIELD_WIDTH, HEIGHT);
+            scoreManager = new ScoreManager(font, new Rectangle(FIELD_WIDTH, 0,
+                WIDTH - FIELD_WIDTH, HEIGHT));
 
             players = new List<Snake>();
-            players.Add(new Snake(head, node, "Red", font,
+            players.Add(new Snake(head, node, "Fred", Color.Red, font,
                 new Keys[] { Keys.Left, Keys.Right }, snakesManager,
-                graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight));
-            players.Add(new Snake(head, node, "Green", font,
+                 FIELD_WIDTH, HEIGHT));
+            players.Add(new Snake(head, node, "Greenlee", Color.Green, font,
                new Keys[] { Keys.A, Keys.D }, snakesManager,
-               graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight));
-            players.Add(new Snake(head, node, "Blue", font,
+                FIELD_WIDTH, HEIGHT));
+            players.Add(new Snake(head, node, "Bluebell", Color.Blue, font,
                new Keys[] { Keys.G, Keys.J }, snakesManager,
-               graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight));
+                FIELD_WIDTH, HEIGHT));
             
             snakesManager.Snakes = players;
             foreach (Snake s in players)
@@ -102,7 +108,7 @@ namespace Achtung
         }
 
         private bool start = false;
-
+        private bool firstGameOver = true;
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -119,14 +125,17 @@ namespace Achtung
             if (state.IsKeyDown(Keys.Space) && gameOver) // new game
             {
                 start = false;
+                firstGameOver = true;
                 powerUpsManager.Reset();
                 snakesManager.NewGame();
             }
-            else if (gameOver)
+            else if (gameOver && firstGameOver)
             {
-                powerUpsManager.Lost();
+                start = false;
+                firstGameOver = false;
+                snakesManager.ScoreWinner();
             }
-            else if(start)
+            else if (start)
             {
                 MoveSnakes(state);
                 snakesManager.Intersection();
@@ -148,11 +157,10 @@ namespace Achtung
 
             spriteBatch.Begin();
 
-            
+            scoreManager.Draw(spriteBatch, players);
+
             if (snakesManager.IsGameOver())
-                spriteBatch.DrawString(font, LOST,
-                    new Vector2((graphics.PreferredBackBufferWidth - font.MeasureString(LOST).X) / 2,
-                        (graphics.PreferredBackBufferHeight - font.MeasureString(LOST).Y) / 2), Color.Green);
+                scoreManager.DrawLost(spriteBatch, LOST);
             
             foreach (Snake s in players)
                 s.Draw(spriteBatch);
