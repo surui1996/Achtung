@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AntiWallYourself.cs" />
+    <Compile Include="DrawPrimitives.cs" />
     <Compile Include="FreeYourself.cs" />
     <Compile Include="MathHelper.cs" />
     <Compile Include="Node.cs" />

@@ -12,14 +12,15 @@ namespace Achtung
         private SpriteFont font;
         private Rectangle scoreRectangle;
         private const float Y_MARGIN = 35.0f;
-        private float X_OFFSET;
+        private const float X_OFFSET = 10.0f;
+        private float offset;
         public ScoreManager(SpriteFont font, Rectangle scoreRectangle)
         {
             this.font = font;
             this.scoreRectangle = scoreRectangle;
 
             string s = "Greenlee";
-            X_OFFSET = font.MeasureString(s).X + 10.0f;
+            offset = font.MeasureString(s).X + 10.0f;
         }
 
         private int count = 0;
@@ -31,8 +32,8 @@ namespace Achtung
             {
                 s1 = s.Name;
                 s2 = s.Score.ToString();
-                float x1 = scoreRectangle.X;
-                float x2 = scoreRectangle.X + X_OFFSET;
+                float x1 = scoreRectangle.X + X_OFFSET;
+                float x2 = scoreRectangle.X + offset + X_OFFSET;
                 float y = Y_MARGIN * i;
                 spriteBatch.DrawString(font, s1, new Vector2(x1, y), s.SnakeColor);
                 spriteBatch.DrawString(font, s2, new Vector2(x2, y), s.SnakeColor);
@@ -45,7 +46,7 @@ namespace Achtung
         {
             if (count == 0)
                 return;
-            float x = scoreRectangle.X;
+            float x = scoreRectangle.X + X_OFFSET;
             float y = scoreRectangle.Height / 2;
             spriteBatch.DrawString(font, lost,
                     new Vector2(x, y), Color.BurlyWood);

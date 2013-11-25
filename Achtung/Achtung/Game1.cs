@@ -26,14 +26,15 @@ namespace Achtung
         SnakesManager snakesManager;
         PowerUpsManager powerUpsManager;
         ScoreManager scoreManager;
+        DrawPrimitives drawHelper;
 
         SpriteFont font;
 
         delegate void MoveDel(KeyboardState state);
         event MoveDel MoveSnakes;
 
-        private const string LOST = "Game Over!!!";
-        private const int FIELD_WIDTH = 750;
+        private const string LOST = "Game Over!";
+        private const int FIELD_WIDTH = 825;
         private const int HEIGHT = 600;
         private const int WIDTH = 1000;
 
@@ -54,7 +55,8 @@ namespace Achtung
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            drawHelper = new DrawPrimitives();
+            drawHelper.Init(graphics);
             base.Initialize();
         }
 
@@ -157,6 +159,8 @@ namespace Achtung
 
             spriteBatch.Begin();
 
+            DrawBorders();
+
             scoreManager.Draw(spriteBatch, players);
 
             if (snakesManager.IsGameOver())
@@ -170,5 +174,20 @@ namespace Achtung
 
             base.Draw(gameTime);
         }
+
+        private void DrawBorders()
+        {
+            Vector2 a, b, c, d;
+            a = new Vector2(0.5f, 0.0f);
+            b = new Vector2(FIELD_WIDTH, 0.0f);
+            c = new Vector2(FIELD_WIDTH, HEIGHT - 1);
+            d = new Vector2(0.5f, HEIGHT - 1);
+
+            drawHelper.DrawLine(graphics, a, b);
+            drawHelper.DrawLine(graphics, b, c);
+            drawHelper.DrawLine(graphics, c, d);
+            drawHelper.DrawLine(graphics, d, a);
+        }
+
     }
 }
