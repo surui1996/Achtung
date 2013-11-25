@@ -16,7 +16,7 @@ namespace Achtung
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class AchtungGame : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -37,8 +37,9 @@ namespace Achtung
         private const int FIELD_WIDTH = 825;
         private const int HEIGHT = 600;
         private const int WIDTH = 1000;
+        public static int BORDER_PX = 5;
 
-        public Game1()
+        public AchtungGame()
         {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = WIDTH;
@@ -178,15 +179,22 @@ namespace Achtung
         private void DrawBorders()
         {
             Vector2 a, b, c, d;
-            a = new Vector2(0.5f, 0.0f);
-            b = new Vector2(FIELD_WIDTH, 0.0f);
-            c = new Vector2(FIELD_WIDTH, HEIGHT - 1);
-            d = new Vector2(0.5f, HEIGHT - 1);
+            //TODO: intersects with border and not screen border...
+            for (int i = 0; i < BORDER_PX; i++)
+            {
+                a = new Vector2(0.0f + i, 0.0f + i);
+                b = new Vector2(FIELD_WIDTH - i, 0.0f + i);
+                c = new Vector2(FIELD_WIDTH - i, HEIGHT - i);
+                d = new Vector2(0.0f + i, HEIGHT - i);
 
-            drawHelper.DrawLine(graphics, a, b);
-            drawHelper.DrawLine(graphics, b, c);
-            drawHelper.DrawLine(graphics, c, d);
-            drawHelper.DrawLine(graphics, d, a);
+                drawHelper.DrawLine(graphics, a, b);
+                drawHelper.DrawLine(graphics, b, c);
+                drawHelper.DrawLine(graphics, c, d);
+                drawHelper.DrawLine(graphics, d, a);
+            }
+            
+
+
         }
 
     }

@@ -16,8 +16,8 @@
     <XnaProfile>Reach</XnaProfile>
     <XnaCrossPlatformGroupID>320250ba-9d89-4a1c-8b11-1257f93ebcec</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
-    <ApplicationIcon>Game.ico</ApplicationIcon>
-    <Thumbnail>GameThumbnail.png</Thumbnail>
+    <ApplicationIcon>GameRes\Game.ico</ApplicationIcon>
+    <Thumbnail>GameRes\GameThumbnail.png</Thumbnail>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -107,27 +107,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AntiWallYourself.cs" />
-    <Compile Include="DrawPrimitives.cs" />
-    <Compile Include="FreeYourself.cs" />
-    <Compile Include="MathHelper.cs" />
-    <Compile Include="Node.cs" />
-    <Compile Include="PowerUp.cs" />
-    <Compile Include="PowerUpsManager.cs" />
+    <Compile Include="PowerUps\AntiWallYourself.cs" />
+    <Compile Include="HelpClasses\DrawPrimitives.cs" />
+    <Compile Include="PowerUps\FreeYourself.cs" />
+    <Compile Include="HelpClasses\MathHelper.cs" />
+    <Compile Include="Snake\Node.cs" />
+    <Compile Include="PowerUps\PowerUp.cs" />
+    <Compile Include="Managers\PowerUpsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Game1.cs" />
-    <Compile Include="ScoreManager.cs" />
-    <Compile Include="SlowYourself.cs" />
-    <Compile Include="Snake.cs" />
-    <Compile Include="SnakesManager.cs" />
-    <Compile Include="SpeedYourself.cs" />
-    <Compile Include="SquareYourself.cs" />
-    <Compile Include="ThinYourself.cs" />
+    <Compile Include="AchtungGame.cs" />
+    <Compile Include="Managers\ScoreManager.cs" />
+    <Compile Include="PowerUps\SlowYourself.cs" />
+    <Compile Include="Snake\Snake.cs" />
+    <Compile Include="PowerUps\SnakesManager.cs" />
+    <Compile Include="PowerUps\SpeedYourself.cs" />
+    <Compile Include="PowerUps\SquareYourself.cs" />
+    <Compile Include="PowerUps\ThinYourself.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Game.ico" />
-    <Content Include="GameThumbnail.png" />
+    <Content Include="GameRes\Game.ico" />
+    <Content Include="GameRes\GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AchtungContent\AchtungContent.contentproj">

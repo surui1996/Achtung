@@ -81,8 +81,9 @@ namespace Achtung
 
         public bool IsOutOfBounds(int screenWidth, int screenHeight)
         {
-            return position.X < 0 || position.X > screenWidth
-                || position.Y < 0 || position.Y > screenHeight;
+            int border = AchtungGame.BORDER_PX;
+            return position.X < border || position.X > screenWidth - border
+                || position.Y < border || position.Y > screenHeight - border;
         }
     }
 }
