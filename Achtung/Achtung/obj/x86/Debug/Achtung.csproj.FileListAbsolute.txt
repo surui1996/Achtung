@@ -41,5 +41,3 @@ C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Acht
 C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.exe
 C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.pdb
-C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\slowfast.xnb
-C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\TranparentPowerUps.xnb

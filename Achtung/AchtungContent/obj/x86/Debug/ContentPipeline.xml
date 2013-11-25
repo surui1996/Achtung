@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\head.xnb</Output>
-      <Time>2013-11-22T16:18:39.25+02:00</Time>
+      <Time>2013-11-22T19:03:25.53125+02:00</Time>
     </Item>
     <Item>
       <Source>node.PNG</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\node.xnb</Output>
-      <Time>2013-11-22T16:29:00.40625+02:00</Time>
+      <Time>2013-11-22T19:03:25.53125+02:00</Time>
     </Item>
     <Item>
       <Source>powerUps.PNG</Source>
@@ -35,25 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\powerUps.xnb</Output>
-      <Time>2013-11-22T16:02:51.71875+02:00</Time>
-    </Item>
-    <Item>
-      <Source>slowfast.PNG</Source>
-      <Name>slowfast</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\slowfast.xnb</Output>
-      <Time>2013-11-20T20:32:31.53125+02:00</Time>
-    </Item>
-    <Item>
-      <Source>TranparentPowerUps.png</Source>
-      <Name>TranparentPowerUps</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\TranparentPowerUps.xnb</Output>
-      <Time>2013-11-22T16:06:06.984375+02:00</Time>
+      <Time>2013-11-22T19:03:25.53125+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

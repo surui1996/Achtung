@@ -64,7 +64,7 @@ namespace Achtung
             spriteBatch = new SpriteBatch(GraphicsDevice);
             head = Content.Load<Texture2D>("head");
             node = Content.Load<Texture2D>("node");
-            powerUps = Content.Load<Texture2D>("TranparentPowerUps");
+            powerUps = Content.Load<Texture2D>("PowerUps");
             font = Content.Load<SpriteFont>("defaultFont");
 
             snakesManager = SnakesManager.GetInstance();            
