@@ -179,7 +179,7 @@ namespace Achtung
         private void DrawBorders()
         {
             Vector2 a, b, c, d;
-            //TODO: intersects with border and not screen border...
+            
             for (int i = 0; i < BORDER_PX; i++)
             {
                 a = new Vector2(0.0f + i, 0.0f + i);
@@ -192,9 +192,6 @@ namespace Achtung
                 drawHelper.DrawLine(graphics, c, d);
                 drawHelper.DrawLine(graphics, d, a);
             }
-            
-
-
         }
 
     }

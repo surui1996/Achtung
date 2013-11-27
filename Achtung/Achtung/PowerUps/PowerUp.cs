@@ -7,14 +7,15 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Achtung
 {
-    public enum PowerUpType { You, Others, All }
+    public enum PowerUpType { Yourself, Others, All }
 
     abstract class PowerUp
     {
-        //TODO
         public TimeSpan EffectTime { get; set; }
+        public PowerUpType Type { get; set; }
         protected bool started;
-        protected Snake taker;
+        protected List<Snake> affected;
+        
 
         protected PowerUp(Vector2 position)
         {
@@ -23,7 +24,7 @@ namespace Achtung
             started = false;
         }
 
-        public abstract void Start(Snake taker, TimeSpan gameTime);
+        public abstract void Start(List<Snake> affected, TimeSpan gameTime);
         public abstract void Stop();
 
         public bool Intersects(PowerUp other)

@@ -14,20 +14,23 @@ namespace Achtung
             Name = "FreeYourself";
         }
 
-        public override void Start(Snake taker, TimeSpan gameTime)
+        public override void Start(List<Snake> affected, TimeSpan gameTime)
         {
             if (!started)
             {
-                this.startTime = gameTime;
-                taker.FreeNodes = true;
-                this.taker = taker;
                 started = true;
+                this.affected = affected;
+                this.startTime = gameTime;
+
+                foreach (Snake s in affected)
+                    s.FreeNodes = true;
             }
         }
 
         public override void Stop()
         {
-            taker.FreeNodes = false;
+            foreach (Snake s in affected)
+                    s.FreeNodes = false;
         }
     }
 }

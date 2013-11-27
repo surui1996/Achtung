@@ -6,12 +6,16 @@ using Microsoft.Xna.Framework;
 
 namespace Achtung
 {
-    class AntiWallYourself : PowerUp
+    class Square : PowerUp
     {
-        public AntiWallYourself(Vector2 position)
+        public Square(Vector2 position, PowerUpType type)
             : base(position)
         {
-            Name = "AntiWallYourself";
+            Type = type;
+            if (type == PowerUpType.Yourself)
+                Name = "SquareYourself";
+            else if (type == PowerUpType.Others)
+                Name = "SquareOthers";
         }
 
         public override void Start(List<Snake> affected, TimeSpan gameTime)
@@ -23,14 +27,14 @@ namespace Achtung
                 this.startTime = gameTime;
 
                 foreach (Snake s in affected)
-                    s.NoWalls = true;
+                    s.Square = true;
             }
         }
 
         public override void Stop()
         {
             foreach (Snake s in affected)
-                s.NoWalls = false;
+                    s.Square = false;
         }
     }
 }

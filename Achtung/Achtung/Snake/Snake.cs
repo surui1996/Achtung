@@ -186,7 +186,6 @@ namespace Achtung
 
         private bool HasCollided()
         {
-
             if (head.IsOutOfBounds(screenWidth, screenHeight))
             {
                 if (NoWalls)

@@ -108,8 +108,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PowerUps\AntiWallYourself.cs" />
-    <Compile Include="HelpClasses\DrawPrimitives.cs" />
     <Compile Include="PowerUps\FreeYourself.cs" />
+    <Compile Include="PowerUps\Speed.cs" />
+    <Compile Include="PowerUps\Square.cs" />
+    <Compile Include="PowerUps\Resize.cs" />
+    <Compile Include="HelpClasses\DrawPrimitives.cs" />
     <Compile Include="HelpClasses\MathHelper.cs" />
     <Compile Include="Snake\Node.cs" />
     <Compile Include="PowerUps\PowerUp.cs" />
@@ -118,12 +121,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="AchtungGame.cs" />
     <Compile Include="Managers\ScoreManager.cs" />
-    <Compile Include="PowerUps\SlowYourself.cs" />
+    <Compile Include="PowerUps\Slow.cs" />
     <Compile Include="Snake\Snake.cs" />
-    <Compile Include="PowerUps\SnakesManager.cs" />
-    <Compile Include="PowerUps\SpeedYourself.cs" />
-    <Compile Include="PowerUps\SquareYourself.cs" />
-    <Compile Include="PowerUps\ThinYourself.cs" />
+    <Compile Include="Managers\SnakesManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GameRes\Game.ico" />

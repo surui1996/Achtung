@@ -21,6 +21,7 @@ namespace Achtung
         private int screenWidth, screenHeight;
 
         private List<PowerUp> drawPowerUps, activePowerUps, remove;
+        private List<Snake> affectedSnakes;
 
         private Dictionary<string, Rectangle> powerUpsDic;
         private Texture2D powerUpsTexture;
@@ -35,25 +36,36 @@ namespace Achtung
             drawPowerUps = new List<PowerUp>();
             activePowerUps = new List<PowerUp>();
             remove = new List<PowerUp>();
+            affectedSnakes = new List<Snake>();
             powerUpsDic = new Dictionary<string, Rectangle>();
 
+            //Yourself
             powerUpsDic.Add("SlowYourself", new Rectangle(0, 0, POWERUP_WIDTH, POWERUP_HEIGHT));
             powerUpsDic.Add("SpeedYourself", new Rectangle((int)X, 0, POWERUP_WIDTH, POWERUP_HEIGHT));
             powerUpsDic.Add("ThinYourself", new Rectangle((int)(X * 2), 0, POWERUP_WIDTH, POWERUP_HEIGHT));
             powerUpsDic.Add("SquareYourself", new Rectangle((int)(X * 3), 0, POWERUP_WIDTH, POWERUP_HEIGHT));
             powerUpsDic.Add("AntiWallYourself", new Rectangle((int)(X * 4), 0, POWERUP_WIDTH, POWERUP_HEIGHT));
             powerUpsDic.Add("FreeYourself", new Rectangle((int)(X * 5), 0, POWERUP_WIDTH, POWERUP_HEIGHT));
+            //Others
+            powerUpsDic.Add("SlowOthers", new Rectangle(0, 43, POWERUP_WIDTH, POWERUP_HEIGHT));
+            powerUpsDic.Add("SpeedOthers", new Rectangle((int)X, 43, POWERUP_WIDTH, POWERUP_HEIGHT));
+            powerUpsDic.Add("ThickOthers", new Rectangle((int)(X * 2), 43, POWERUP_WIDTH, POWERUP_HEIGHT));
+            powerUpsDic.Add("SquareOthers", new Rectangle((int)(X * 3), 43, POWERUP_WIDTH, POWERUP_HEIGHT));
             rnd = new Random();
         }
 
         public void Update(List<Snake> snakes, GameTime gameTime)
         {
             foreach (Snake s in snakes)
-                UpdateSnake(s, gameTime);            
+            {
+                UpdateSnake(s, snakes, gameTime);
+            }
         }
 
-        private void UpdateSnake(Snake snake, GameTime gameTime)
+        private void UpdateSnake(Snake snake, List<Snake> players, GameTime gameTime)
         {
+            if(affectedSnakes != null)
+                affectedSnakes = new List<Snake>();
             //Add new powerups to the field, randomly
             while (drawPowerUps.Count < MAX && ((int)rnd.Next(100) == 0))
             {
@@ -73,7 +85,14 @@ namespace Achtung
             {
                 if (snake.Head.Intersects(p))
                 {
-                    p.Start(snake, gameTime.TotalGameTime);
+                    if (p.Type == PowerUpType.Yourself)
+                        affectedSnakes.Add(snake);
+                    else if (p.Type == PowerUpType.Others)
+                        foreach (Snake s in players)
+                            if(s != snake)
+                                affectedSnakes.Add(s);
+                        
+                    p.Start(affectedSnakes, gameTime.TotalGameTime);
                     foreach (PowerUp active in activePowerUps)
                         if (active.Name.Equals(p.Name))
                             active.EffectTime += DEFAULT_TIME;
@@ -97,6 +116,7 @@ namespace Achtung
             {
                 if (gameTime.TotalGameTime.Subtract(p.StartTime) > p.EffectTime)
                 {
+                    //in p there is no affected snakes any more
                     p.Stop();
                     if (remove == null)
                         remove = new List<PowerUp>();
@@ -115,7 +135,7 @@ namespace Achtung
         public void Draw(SpriteBatch spriteBatch)
         {
             foreach (PowerUp p in drawPowerUps)
-                spriteBatch.Draw(powerUpsTexture, p.Position, powerUpsDic[p.Name], Color.CornflowerBlue, 0.0f,
+                spriteBatch.Draw(powerUpsTexture, p.Position, powerUpsDic[p.Name], Color.White, 0.0f,
                     new Vector2(0,0), 1.0f, SpriteEffects.None, 0);
         }
 
@@ -131,6 +151,8 @@ namespace Achtung
         public void Reset()
         {
             drawPowerUps = new List<PowerUp>();
+            activePowerUps = new List<PowerUp>();
+            remove = null;
         }
 
         private PowerUp AddRandomPowerUp()
@@ -141,23 +163,31 @@ namespace Achtung
             PowerUp power;
             int random = (int)rnd.Next(powerUpsDic.Count);
             switch (random)
-	        {
-		        case 0: power = new SlowYourself(pos); 
+            {
+                case 0: power = new Slow(pos, PowerUpType.Yourself);
                     break;
-                case 1: power = new SpeedYourself(pos);
+                case 1: power = new Speed(pos, PowerUpType.Yourself);
                     break;
-                case 2: power = new ThinYourself(pos);
+                case 2: power = new Resize(pos, PowerUpType.Yourself);
                     break;
-                case 3: power = new SquareYourself(pos);
+                case 3: power = new Square(pos, PowerUpType.Yourself);
                     break;
                 case 4: power = new AntiWallYourself(pos);
                     break;
                 case 5: power = new FreeYourself(pos);
                     break;
-                default: 
+                case 6: power = new Slow(pos, PowerUpType.Others);
+                    break;
+                case 7: power = new Speed(pos, PowerUpType.Others);
+                    break;
+                case 8: power = new Resize(pos, PowerUpType.Others);
+                    break;
+                case 9: power = new Square(pos, PowerUpType.Others);
+                    break;
+                default:
                     return null;
-	        }
-
+            }
+            
             foreach (PowerUp p in drawPowerUps)
                 if (power.Intersects(p))
                     return null;
