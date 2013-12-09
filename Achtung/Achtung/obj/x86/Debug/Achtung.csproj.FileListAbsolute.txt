@@ -41,3 +41,13 @@ C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Acht
 C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.exe
 C:\Documents and Settings\Administrator\My Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.pdb
+C:\Users\דורון\Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\defaultFont.xnb
+C:\Users\דורון\Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\head.xnb
+C:\Users\דורון\Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\node.xnb
+C:\Users\דורון\Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Content\PowerUps.xnb
+C:\Users\דורון\Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Achtung.exe
+C:\Users\דורון\Documents\GitHub\Achtung\Achtung\Achtung\bin\x86\Debug\Achtung.pdb
+C:\Users\דורון\Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.csprojResolveAssemblyReference.cache
+C:\Users\דורון\Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\דורון\Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.exe
+C:\Users\דורון\Documents\GitHub\Achtung\Achtung\Achtung\obj\x86\Debug\Achtung.pdb

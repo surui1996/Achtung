@@ -50,14 +50,14 @@ namespace Achtung
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(texture, position, SourceRectangle, Color.White,
-                MathHelper.ToRadians(angle),
+                0.0f,
                 new Vector2(texture.Width / 2, texture.Height / 2),
                 scale, SpriteEffects.None, 0);
         }
         public void Draw(SpriteBatch spriteBatch, float scaleMultiplier)
         {
             spriteBatch.Draw(texture, position, SourceRectangle, Color.White,
-                MathHelper.ToRadians(angle),
+                0.0f,
                 new Vector2(texture.Width / 2, texture.Height / 2),
                 scale * scaleMultiplier, SpriteEffects.None, 0);
         }

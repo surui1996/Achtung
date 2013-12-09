@@ -178,6 +178,7 @@ namespace Achtung
 
         public void UpdateScale(float multiplier)
         {
+            nodesCount = (int)(nodesCount * multiplier);
             float newScale = Scale * multiplier;
             head.Scale = newScale;
             Scale = newScale;
