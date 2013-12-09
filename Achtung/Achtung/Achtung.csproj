@@ -107,8 +107,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PowerUps\AntiWallYourself.cs" />
+    <Compile Include="PowerUps\AntiWall.cs" />
+    <Compile Include="PowerUps\Clean.cs" />
     <Compile Include="PowerUps\FreeYourself.cs" />
+    <Compile Include="PowerUps\NewThree.cs" />
     <Compile Include="PowerUps\Speed.cs" />
     <Compile Include="PowerUps\Square.cs" />
     <Compile Include="PowerUps\Resize.cs" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace Achtung
+namespace Achtung.PowerUps
 {
     class FreeYourself : PowerUp
     {
@@ -12,6 +12,7 @@ namespace Achtung
             : base(position)
         {
             Name = "FreeYourself";
+            Type = PowerUpType.Yourself;
         }
 
         public override void Start(List<Snake> affected, TimeSpan gameTime)

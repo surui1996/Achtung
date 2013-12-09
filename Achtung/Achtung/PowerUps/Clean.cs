@@ -6,16 +6,13 @@ using Microsoft.Xna.Framework;
 
 namespace Achtung.PowerUps
 {
-    class Square : PowerUp
+    class Clean : PowerUp
     {
-        public Square(Vector2 position, PowerUpType type)
+        public Clean(Vector2 position)
             : base(position)
         {
-            Type = type;
-            if (type == PowerUpType.Yourself)
-                Name = "SquareYourself";
-            else if (type == PowerUpType.Others)
-                Name = "SquareOthers";
+            Name = "Clean";
+            Type = PowerUpType.All;
         }
 
         public override void Start(List<Snake> affected, TimeSpan gameTime)
@@ -25,16 +22,15 @@ namespace Achtung.PowerUps
                 started = true;
                 this.affected = affected;
                 this.startTime = gameTime;
+                this.EffectTime = new TimeSpan(0, 0, 1);
 
                 foreach (Snake s in affected)
-                    s.Square = true;
+                    s.Clean();
             }
         }
 
         public override void Stop()
         {
-            foreach (Snake s in affected)
-                    s.Square = false;
         }
     }
 }

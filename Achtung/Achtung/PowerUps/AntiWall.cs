@@ -4,14 +4,18 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace Achtung
+namespace Achtung.PowerUps
 {
-    class AntiWallYourself : PowerUp
+    class AntiWall : PowerUp
     {
-        public AntiWallYourself(Vector2 position)
+        public AntiWall(Vector2 position, PowerUpType type)
             : base(position)
         {
-            Name = "AntiWallYourself";
+            Type = type;
+            if (type == PowerUpType.Yourself)
+                Name = "AntiWallYourself";
+            else if (type == PowerUpType.All)
+                Name = "AntiWallAll";
         }
 
         public override void Start(List<Snake> affected, TimeSpan gameTime)

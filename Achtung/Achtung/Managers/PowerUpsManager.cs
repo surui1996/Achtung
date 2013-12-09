@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Achtung.PowerUps;
 
 namespace Achtung
 {
@@ -19,6 +20,7 @@ namespace Achtung
         private const float X = 48.0f;
 
         private int screenWidth, screenHeight;
+        private bool ThreeAdded;
 
         private List<PowerUp> drawPowerUps, activePowerUps, remove;
         private List<Snake> affectedSnakes;
@@ -39,6 +41,8 @@ namespace Achtung
             affectedSnakes = new List<Snake>();
             powerUpsDic = new Dictionary<string, Rectangle>();
 
+            ThreeAdded = false;
+
             //Yourself
             powerUpsDic.Add("SlowYourself", new Rectangle(0, 0, POWERUP_WIDTH, POWERUP_HEIGHT));
             powerUpsDic.Add("SpeedYourself", new Rectangle((int)X, 0, POWERUP_WIDTH, POWERUP_HEIGHT));
@@ -51,6 +55,13 @@ namespace Achtung
             powerUpsDic.Add("SpeedOthers", new Rectangle((int)X, 43, POWERUP_WIDTH, POWERUP_HEIGHT));
             powerUpsDic.Add("ThickOthers", new Rectangle((int)(X * 2), 43, POWERUP_WIDTH, POWERUP_HEIGHT));
             powerUpsDic.Add("SquareOthers", new Rectangle((int)(X * 3), 43, POWERUP_WIDTH, POWERUP_HEIGHT));
+            //All
+            powerUpsDic.Add("Clean", new Rectangle(0, 43 * 2, POWERUP_WIDTH, POWERUP_HEIGHT));
+            powerUpsDic.Add("NewThree", new Rectangle((int)X, 43 * 2, POWERUP_WIDTH, POWERUP_HEIGHT));
+            powerUpsDic.Add("AntiWallAll", new Rectangle((int)(X * 2), 43 * 2, POWERUP_WIDTH, POWERUP_HEIGHT));
+            //Random
+            powerUpsDic.Add("RandomPowerUp", new Rectangle((int)(X * 3), 43 * 2, POWERUP_WIDTH, POWERUP_HEIGHT));
+            
             rnd = new Random();
         }
 
@@ -62,23 +73,27 @@ namespace Achtung
             }
         }
 
+
+        private void AddPowerUp(Snake s)
+        {
+            PowerUp p = AddRandomPowerUp();
+            while (p == null)
+                p = AddRandomPowerUp();
+            while (s.Head.Intersects((p)))
+            {
+                p = AddRandomPowerUp();
+                while (p == null) p = AddRandomPowerUp();
+            }
+            drawPowerUps.Add(p);
+        }
+
         private void UpdateSnake(Snake snake, List<Snake> players, GameTime gameTime)
         {
             if(affectedSnakes != null)
                 affectedSnakes = new List<Snake>();
             //Add new powerups to the field, randomly
-            while (drawPowerUps.Count < MAX && ((int)rnd.Next(100) == 0))
-            {
-                PowerUp p = AddRandomPowerUp();
-                while (p == null)
-                    p = AddRandomPowerUp();
-                while (snake.Head.Intersects((p)))
-                {
-                    p = AddRandomPowerUp();
-                    while (p == null) p = AddRandomPowerUp();
-                }
-                drawPowerUps.Add(p);
-            }
+            while (drawPowerUps.Count < MAX && ((int)rnd.Next(125) == 0))
+                AddPowerUp(snake);
 
             //Start powerups effect on intersect event
             foreach (PowerUp p in drawPowerUps)
@@ -88,13 +103,19 @@ namespace Achtung
                     if (p.Type == PowerUpType.Yourself)
                         affectedSnakes.Add(snake);
                     else if (p.Type == PowerUpType.Others)
+                    {
                         foreach (Snake s in players)
-                            if(s != snake)
+                            if (s != snake)
                                 affectedSnakes.Add(s);
-                        
+                    }
+                    else if (p.Name.Equals("NewThree")) //TODO: wait 3 seconds before adding the powerUps
+                       ThreeAdded = true;
+                    else
+                        foreach (Snake s in players) affectedSnakes.Add(s);
+
                     p.Start(affectedSnakes, gameTime.TotalGameTime);
                     foreach (PowerUp active in activePowerUps)
-                        if (active.Name.Equals(p.Name))
+                        if (active.Name.Equals(p.Name)) //TODO: Also the same class name besides the sub-class name
                             active.EffectTime += DEFAULT_TIME;
                     activePowerUps.Add(p);
                     if (remove == null)
@@ -102,6 +123,12 @@ namespace Achtung
                     remove.Add(p);
                 }
             }
+            if(ThreeAdded)
+            {
+                 for (int i = 0; i < 3; i++) AddPowerUp(snake);
+                 ThreeAdded = false;
+            }
+
 
 
             if (remove != null)
@@ -162,37 +189,55 @@ namespace Achtung
 
             PowerUp power;
             int random = (int)rnd.Next(powerUpsDic.Count);
-            switch (random)
+            if (random == 13)
             {
-                case 0: power = new Slow(pos, PowerUpType.Yourself);
-                    break;
-                case 1: power = new Speed(pos, PowerUpType.Yourself);
-                    break;
-                case 2: power = new Resize(pos, PowerUpType.Yourself);
-                    break;
-                case 3: power = new Square(pos, PowerUpType.Yourself);
-                    break;
-                case 4: power = new AntiWallYourself(pos);
-                    break;
-                case 5: power = new FreeYourself(pos);
-                    break;
-                case 6: power = new Slow(pos, PowerUpType.Others);
-                    break;
-                case 7: power = new Speed(pos, PowerUpType.Others);
-                    break;
-                case 8: power = new Resize(pos, PowerUpType.Others);
-                    break;
-                case 9: power = new Square(pos, PowerUpType.Others);
-                    break;
-                default:
-                    return null;
+                random = (int)rnd.Next(powerUpsDic.Count - 1);
+                power = MakePowerUp(pos, random);
+                power.Name = "RandomPowerUp";
             }
+            else
+                power = MakePowerUp(pos, random);
             
             foreach (PowerUp p in drawPowerUps)
                 if (power.Intersects(p))
                     return null;
 
             return power;
+        }
+
+        private PowerUp MakePowerUp(Vector2 pos, int random)
+        {
+            switch (random)
+            {
+                case 0: return new Slow(pos, PowerUpType.Yourself);
+                    
+                case 1: return new Speed(pos, PowerUpType.Yourself);
+                    
+                case 2: return new Resize(pos, PowerUpType.Yourself);
+                    
+                case 3: return new Square(pos, PowerUpType.Yourself);
+                    
+                case 4: return new AntiWall(pos, PowerUpType.Yourself);
+                    
+                case 5: return new FreeYourself(pos);
+                    
+                case 6: return new Slow(pos, PowerUpType.Others);
+                    
+                case 7: return new Speed(pos, PowerUpType.Others);
+                    
+                case 8: return new Resize(pos, PowerUpType.Others);
+                    
+                case 9: return new Square(pos, PowerUpType.Others);
+                    
+                case 10: return new Clean(pos);
+                    
+                case 11: return new NewThree(pos);
+                    
+                case 12: return new AntiWall(pos, PowerUpType.All);
+                    
+                default:
+                    return null;
+            }
         }
     }
 }

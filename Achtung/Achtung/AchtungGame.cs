@@ -138,7 +138,7 @@ namespace Achtung
                 firstGameOver = false;
                 snakesManager.ScoreWinner();
             }
-            else if (start)
+            else if (start && !gameOver)
             {
                 MoveSnakes(state);
                 snakesManager.Intersection();

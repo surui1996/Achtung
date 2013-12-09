@@ -170,6 +170,11 @@ namespace Achtung
             RandomHead(sm);            
         }
 
+        public void Clean()
+        {
+            this.nodes = new List<Node>();
+        }
+
         public void UpdateVelocity(float multiplier)
         {
             this.velocity = velocity * multiplier;
